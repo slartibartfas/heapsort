@@ -1,0 +1,72 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{ngerman}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\newcommand{\fpar}[1]{\fbox{\parbox{12,5cm}{#1}}}
+\headheight14pt
+\sloppy
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\topmargin-2cm
+\oddsidemargin2mm
+\textwidth15.5cm
+\textheight22cm
+
+\pagenumbering{arabic}
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+\title{Heapsort}
+\author{Tobias Guggenmos}
+
+\setcounter{tocdepth}{5}
+
+\newtheorem{Def}{Definition}
+
+\begin{document}
+\maketitle
+\begin{tabbing}
+\=\textbf{Input:} \hspace{1cm}\=Ein unsortiertes Array\\
+\>\textbf{Output:} \>Ein sortiertes Array
+
+\end{tabbing}
+
+\begin{Def}
+	Als max\textbf{Heap} bezeichnet man einen Bin\"arbaum, bei dem jeder Elternknoten gr\"osser als seine Kinder ist.
+\end{Def}
+In einem Heap gilt folgendes:
+\begin{itemize}
+\item Die Wurzel ist der gr\"osste Knoten
+\item Alle Teilb\"aume eines Heaps sind ebenfalls Heaps
+\end{itemize}
+\textbf{Idee:}
+\begin{enumerate}
+\item Man betrachtet das Inputarray als Baum und sortiert es zu einem Heap um
+\item Der erste Eintrag des Arrays (also die Wurzel des Baums) ist nun das Gr\"osste Element des Arrays. Diesen Vertauscht man mit dem letzten Eintrag des Baumes und schliesst ihn aus dem Heap aus.
+\item Man repariert den Verbleibenden Baum wieder zu einem Heap und geht zu Punkt 2
+\end{enumerate}
+\textbf{Algorithmus zum Reparieren eines Heaps, der bis auf die Wurzel $w$ passt:}
+
+\begin{enumerate}
+\item Wenn $w$ keine Kinder hat: fertig
+\item Wenn beide Kinder von $w$ kleiner als $w$ sind: fertig
+\item Sonst: Tausche $w$ mit dem gr\"ossten Kind $k\quad\rightarrow$ Die Wurzel  ist wieder der gr\"osste Knoten im Baum
+\item Da $k$ ersetzt wurde, kann es sein, dass der Teilbaum mit Wurzel $k$ repariert werden muss $\rightarrow w=k$; fange wieder bei 1 an.
+\end{enumerate}
+\textbf{Algorithmus zum Umsortieren eines Arrays zu einem Heap}
+\begin{enumerate}
+\item Repariere zuerst alle Teilb\"aume der letzten Elternreihe.
+\item Die Teilb\"aume der vorletzten Elternreihe sind jetzt bis auf ihre Wurzel Heaps, repariere auch diese
+\item Die Teilb\"aume der vorvorletzten \dots bis zur Wurzel. 
+\end{enumerate}
+\end{document}
+
