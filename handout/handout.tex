@@ -39,7 +39,7 @@
 \>\textbf{Output:} \>Ein sortiertes Array
 
 \end{tabbing}
-
+\section{Heap}
 \begin{Def}
 	Als max\textbf{Heap} bezeichnet man einen Bin\"arbaum, bei dem jeder Elternknoten gr\"osser als seine Kinder ist.
 \end{Def}
@@ -48,10 +48,11 @@ In einem Heap gilt folgendes:
 \item Die Wurzel ist der gr\"osste Knoten
 \item Alle Teilb\"aume eines Heaps sind ebenfalls Heaps
 \end{itemize}
+\section{Algorithmus}
 \textbf{Idee:}
 \begin{enumerate}
 \item Man betrachtet das Inputarray als Baum und sortiert es zu einem Heap um
-\item Der erste Eintrag des Arrays (also die Wurzel des Baums) ist nun das Gr\"osste Element des Arrays. Diesen Vertauscht man mit dem letzten Eintrag des Baumes und schliesst ihn aus dem Heap aus.
+\item Der erste Eintrag des Arrays (also die Wurzel des Baums) ist nun das Gr\"osste Element des Arrays. Diesen Vertauscht man mit dem letzten Eintrag des Arrays und schliesst ihn aus dem Heap aus.
 \item Man repariert den Verbleibenden Baum wieder zu einem Heap und geht zu Punkt 2
 \end{enumerate}
 \textbf{Algorithmus zum Reparieren eines Heaps, der bis auf die Wurzel $w$ passt:}
@@ -59,7 +60,7 @@ In einem Heap gilt folgendes:
 \begin{enumerate}
 \item Wenn $w$ keine Kinder hat: fertig
 \item Wenn beide Kinder von $w$ kleiner als $w$ sind: fertig
-\item Sonst: Tausche $w$ mit dem gr\"ossten Kind $k\quad\rightarrow$ Die Wurzel  ist wieder der gr\"osste Knoten im Baum
+\item Sonst: Tausche $w$ mit dem gr\"ossten Kind $k\rightarrow$ Die Wurzel  ist wieder der gr\"osste Knoten im Baum
 \item Da $k$ ersetzt wurde, kann es sein, dass der Teilbaum mit Wurzel $k$ repariert werden muss $\rightarrow w=k$; fange wieder bei 1 an.
 \end{enumerate}
 \textbf{Algorithmus zum Umsortieren eines Arrays zu einem Heap}
@@ -68,5 +69,22 @@ In einem Heap gilt folgendes:
 \item Die Teilb\"aume der vorletzten Elternreihe sind jetzt bis auf ihre Wurzel Heaps, repariere auch diese
 \item Die Teilb\"aume der vorvorletzten \dots bis zur Wurzel. 
 \end{enumerate}
-\end{document}
 
+\section{Effizienz}
+Grobe Komplexit\"atsabsch\"atzung: Anzahl der Aufrufe von $siftDown$:
+\[ n_{Eltern}+n\]
+\begin{itemize}
+\item Unabh\"angig von der Sortierung
+\item Dauert also immer gleich lang
+\item \textbf{Kein Worst Case}
+\item In place
+\item Nachteil: Array muss wegen den vielen Tausche im RAM sein.
+\end{itemize}
+
+\section*{Quellen}
+\url{https://en.wikipedia.org/wiki/Heapsort}
+
+Der Quellcode ist unter der MIT-License von mir auf github ver\"offentlicht\\
+\url{https://github.com/slartibartfas/heapsort}
+
+\end{document}
